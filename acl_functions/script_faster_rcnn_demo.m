@@ -19,7 +19,11 @@ opts.test_scales            = 600;
 %% -------------------- INIT_MODEL --------------------
 % model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_vgg_16layers'); %% VGG-16
 model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_ZF'); %% ZF
+% model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'ImageNet'); %% ZF
 proposal_detection_model    = load_proposal_detection_model(model_dir);
+if proposal_detection_model.classes{1}(1) == 'n'
+    proposal_detection_model.classes = class_num2str(proposal_detection_model.classes);
+end
 
 proposal_detection_model.conf_proposal.test_scales = opts.test_scales;
 proposal_detection_model.conf_detection.test_scales = opts.test_scales;
@@ -65,6 +69,8 @@ end
 
 %% -------------------- TESTING --------------------
 im_names = {'001763.jpg', '004545.jpg', '000542.jpg', '000456.jpg', '001150.jpg'};
+% im_names = {'pics/image1.JPG', 'pics/image2.JPG', 'pics/image3.JPG', 'pics/image4.JPG',...
+%    'pics/image5.JPG','pics/image6.JPG','pics/image7.jpg','pics/image8.jpg'};
 % these images can be downloaded with fetch_faster_rcnn_final_model.m
 
 running_time = [];
@@ -103,7 +109,8 @@ for j = 1:length(im_names)
     % visualize
     classes = proposal_detection_model.classes;
     boxes_cell = cell(length(classes), 1);
-    thres = 0.6;
+    % thres = 0.6;
+    thres = 0.5;
     for i = 1:length(boxes_cell)
         boxes_cell{i} = [boxes(:, (1+(i-1)*4):(i*4)), scores(:, i)];
         boxes_cell{i} = boxes_cell{i}(nms(boxes_cell{i}, 0.3), :);
@@ -151,3 +158,33 @@ function aboxes = boxes_filter(aboxes, per_nms_topN, nms_overlap_thres, after_nm
         aboxes = aboxes(1:min(length(aboxes), after_nms_topN), :);
     end
 end
+
+function class_str = class_num2str(class_num)
+% load data
+file_dir = fullfile(pwd, 'datasets', 'ImageNetData');
+class_num2str = importdata([file_dir, '/class_labels_num2str']);
+num_categories = numel(class_num2str);
+class_num_match = cell(num_categories, 1);
+class_str_match = cell(num_categories, 1);
+for i = 1:numel(class_num2str)
+    c = strsplit(class_num2str{i}, ' ');
+    class_num_match(i) = c(1);
+    class_str_match{i} = strjoin(c(2:end), '-');
+end
+
+% match with class labels
+class_str = cell(numel(class_num), 1);
+for i = 1:numel(class_num)
+    for j = 1:num_categories
+       if class_num{i} == class_num_match{j}
+           class_str{i} = class_str_match{j};
+           break;
+       end 
+    end   
+end
+end
+
+
+
+
+

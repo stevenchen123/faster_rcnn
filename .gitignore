@@ -1,54 +1,66 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# Eclipse Ignore #
+##################
+.cproject
+.project
+.pydevproject
 
-# Folder config file
-Desktop.ini
+# Gedit Ignore #
+################
+*~
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# ROS Ignore #
+##############
+cmake_install.cmake
+build/
+bin/
+lib/
+msg_gen/
+srv_gen/
+gtest/
+devel/
 
-# User Ingore
-models/
-data/
-datasets/
-external/caffe/matlab
-output/
-cachedir/
-imdb/cache
-*.caffemodel
-*.mat
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.d
+*.pyc
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
 
-# Windows shortcuts
-*.lnk
+# Catkin custom files #
+#######################
+CATKIN_IGNORE
 
-# =========================
-# Operating System Files
-# =========================
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+log/
+LOG*
 
-# OSX
-# =========================
-
+# OS generated files #
+######################
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
+.DS_Store?
 ._*
-
-# Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+ehthumbs.db
+Thumbs.db

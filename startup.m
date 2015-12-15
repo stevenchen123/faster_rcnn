@@ -12,6 +12,7 @@ function startup()
     addpath(genpath(fullfile(curdir, 'bin')));
     addpath(genpath(fullfile(curdir, 'experiments')));
     addpath(genpath(fullfile(curdir, 'imdb')));
+    addpath(genpath(fullfile(curdir, 'acl_functions')));
 
     mkdir_if_missing(fullfile(curdir, 'datasets'));
 

@@ -29,7 +29,7 @@ if ~opts.keep_raw_proposal
 end
 
 % add new proposal boxes
-for i = 1:length(rois)  
+for i = 1:length(rois) 
     [~, image_name1] = fileparts(imdb.image_ids{i});
     [~, image_name2] = fileparts(opts.regions.images{i});
     assert(strcmp(image_name1, image_name2));
