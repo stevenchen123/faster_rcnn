@@ -66,9 +66,10 @@ for j = 1:2 % we warm up 2 times
 end
 
 %% -------------------- TESTING --------------------
-im_names = {'001763.jpg', '004545.jpg', '000542.jpg', '000456.jpg', '001150.jpg'};
-% im_names = {'pics/image1.JPG', 'pics/image2.JPG', 'pics/image3.JPG', 'pics/image4.JPG',...
-%    'pics/image5.JPG','pics/image6.JPG','pics/image7.jpg','pics/image8.jpg'};
+cd test_imgs 
+im_names = {'001763.jpg', '004545.jpg', '000542.jpg', '000456.jpg', '001150.jpg', ...
+   'IMG_1.jpg', 'IMG_2.jpg', 'IMG_1153.JPG', 'IMG_1154.JPG',...
+   'IMG_1160.JPG','IMG_1161.JPG','IMG_1162.JPG', 'IMG_1163.JPG'};
 % these images can be downloaded with fetch_faster_rcnn_final_model.m
 
 running_time = [];
@@ -116,10 +117,12 @@ for j = 1:length(im_names)
         I = boxes_cell{i}(:, 5) >= thres;
         boxes_cell{i} = boxes_cell{i}(I, :);
     end
-    figure(j);
+    f = figure(j);
     showboxes(im, boxes_cell, classes, 'voc');
     pause(0.1);
+    saveas(f,[pwd,'/results/',im_names{j}],'jpg');
 end
+cd ..
 fprintf('mean time: %.3fs\n', mean(running_time));
 
 caffe.reset_all(); 
