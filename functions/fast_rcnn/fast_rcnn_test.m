@@ -165,27 +165,28 @@ function mAP = fast_rcnn_test(conf, imdb, roidb, varargin)
     % Peform AP evaluation
     % ------------------------------------------------------------------------
 
-    if isequal(imdb.eval_func, @imdb_eval_voc)
-        for model_ind = 1:num_classes
-          cls = imdb.classes{model_ind};
-          res(model_ind) = imdb.eval_func(cls, aboxes{model_ind}, imdb, opts.cache_name, opts.suffix);
-        end
-    else
-    % ilsvrc
-        res = imdb.eval_func(aboxes, imdb, opts.cache_name, opts.suffix);
-    end
-
-    if ~isempty(res)
-        fprintf('\n~~~~~~~~~~~~~~~~~~~~\n');
-        fprintf('Results:\n');
-        aps = [res(:).ap]' * 100;
-        disp(aps);
-        disp(mean(aps));
-        fprintf('~~~~~~~~~~~~~~~~~~~~\n');
-        mAP = mean(aps);
-    else
-        mAP = nan;
-    end
+%     if isequal(imdb.eval_func, @imdb_eval_voc)
+%         for model_ind = 1:num_classes
+%           cls = imdb.classes{model_ind};
+%           res(model_ind) = imdb.eval_func(cls, aboxes{model_ind}, imdb, opts.cache_name, opts.suffix);
+%         end
+%     else
+%     % ilsvrc
+%         res = imdb.eval_func(aboxes, imdb, opts.cache_name, opts.suffix);
+%     end
+% 
+%     if ~isempty(res)
+%         fprintf('\n~~~~~~~~~~~~~~~~~~~~\n');
+%         fprintf('Results:\n');
+%         aps = [res(:).ap]' * 100;
+%         disp(aps);
+%         disp(mean(aps));
+%         fprintf('~~~~~~~~~~~~~~~~~~~~\n');
+%         mAP = mean(aps);
+%     else
+%         mAP = nan;
+%     end
+    mAP = inf;
     
     diary off;
 end

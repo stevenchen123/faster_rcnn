@@ -17,9 +17,7 @@ opts.use_gpu                = true;
 opts.test_scales            = 600;
 
 %% -------------------- INIT_MODEL --------------------
-% model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_vgg_16layers'); %% VGG-16
-model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_VOC0712_ZF'); %% ZF
-% model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'ImageNet'); %% ZF
+model_dir                   = fullfile(pwd, 'output', 'faster_rcnn_final', 'faster_rcnn_ImageNet_CaffeNet'); %% ZF
 proposal_detection_model    = load_proposal_detection_model(model_dir);
 if proposal_detection_model.classes{1}(1) == 'n'
     proposal_detection_model.classes = class_num2str(proposal_detection_model.classes);
