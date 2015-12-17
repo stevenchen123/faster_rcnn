@@ -12,7 +12,8 @@ This repo is forked from https://github.com/ShaoqingRen/faster_rcnn
 	3.1 may need to install (apt-get install) a few packages
 	    good resources can be found here
 		http://caffe.berkeleyvision.org/install_apt.html
-	3.2 cd external/caffe
+	3.2 copy and configure Makefile.config
+	3.3 cd external/caffe
 	    make -j* all
 	    make matcaffe
 
@@ -21,7 +22,7 @@ This repo is forked from https://github.com/ShaoqingRen/faster_rcnn
 	4.2 faster_rcnn_build.m
 
 5. Make folder links to image datasets
-	5.1 inside imdb directory
+	5.1 inside dataset directory
 
 6. Download training config files / model
 	6.1 run scripts files in fetch_data directory
