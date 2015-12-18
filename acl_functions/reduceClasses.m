@@ -100,12 +100,12 @@ end
 
 % remap label
 % comment out if don't want to remap labels
-% classes= importdata('datasets/ImageNetData/class_labels_str');
-% imdb_downsampled.classes = classes(desired_classes,:);
-% fprintf(sprintf('--> want to detect %d classes \n', length(desired_classes)));
-% for i = 1:length(desired_classes)
-%     fprintf(sprintf('%s \t %d imgs \n',classes{desired_classes(i)}, counts(i))); 
-% end
+classes= importdata('datasets/ImageNetData/class_labels_str');
+imdb_downsampled.classes = classes(desired_classes,:);
+fprintf(sprintf('--> want to detect %d classes \n', length(desired_classes)));
+for i = 1:length(desired_classes)
+    fprintf(sprintf('%s \t %d imgs \n',classes{desired_classes(i)}, counts(i))); 
+end
 
 % verify selection is correct (show one image from each chosen category)
 % im_dir = fullfile(pwd,  imdb.image_dir);

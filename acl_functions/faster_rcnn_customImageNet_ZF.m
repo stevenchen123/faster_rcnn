@@ -1,4 +1,4 @@
-function faster_rcnn_ImageNet_ZF()
+function faster_rcnn_customImageNet_ZF()
 % script_faster_rcnn_VOC2007_ZF()
 % Faster rcnn training and testing with Zeiler & Fergus model
 % --------------------------------------------------------
@@ -21,14 +21,14 @@ opts.do_val                 = false;
 model                       = generateModel(fullfile(pwd, 'models', 'CaffeNet'));
 
 % cache base
-cache_base_proposal         = 'faster_rcnn_ImageNet_CaffeNet';
+cache_base_proposal         = 'faster_rcnn_customImageNet_CaffeNet';
 cache_base_fast_rcnn        = '';
 % train/test data
 dataset                     = [];
 use_flip                = true;
 
-dataset.imdb_train    = { imdb_from_ImageNet(use_flip) };
-dataset.roidb_train   = cellfun(@(x) roidb_from_ImageNet(x), dataset.imdb_train, 'UniformOutput', false);
+dataset.imdb_train    = { imdb_from_customImageNet(use_flip) };
+dataset.roidb_train   = cellfun(@(x) roidb_from_customImageNet(x), dataset.imdb_train, 'UniformOutput', false);
 
 % downsampling the dataset to only include images of certain classes
 
@@ -38,7 +38,7 @@ desired_classes = [2;32;35;53;54;56;72;73;79;80;87;89;...
 % 3 classes for debugging
 % desired_classes = [79; 182; 188];
 % !!! need to remove log in output folder
-max_images_per_class = 800;
+max_images_per_class = 2000;
 tmp_imdb_train = dataset.imdb_train{1,1}; 
 tmp_roidb_train = dataset.roidb_train{1,1}; 
 [dataset.imdb_train{1,1}, dataset.roidb_train{1,1}] = ...
@@ -52,7 +52,7 @@ tmp_roidb_train = dataset.roidb_train{1,1};
 % end
 %showDataPic(dataset.imdb_train{1,1}, dataset.roidb_train{1,1}, 1)
 %showDataPic(dataset.imdb_test, dataset.roidb_test, 1);
- clearvars tmp_imdb_train tmp_roidb_train
+clearvars tmp_imdb_train tmp_roidb_train
 
 
 %% -------------------- TRAIN --------------------
