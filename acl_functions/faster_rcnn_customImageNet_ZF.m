@@ -124,7 +124,8 @@ model.pre_trained_net_file                      = fullfile(pwd, 'models', 'pre_t
 model.feat_stride                               = 16;
 
 %% stage 1 rpn, inited from pre-trained network
-model.stage1_rpn.solver_def_file                = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF', 'solver_60k80k.prototxt');
+%model.stage1_rpn.solver_def_file                = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF', 'solver_60k80k.prototxt');
+model.stage1_rpn.solver_def_file                = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF', 'solver_100k160k.prototxt');
 model.stage1_rpn.test_net_def_file              = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF', 'test.prototxt');
 model.stage1_rpn.init_net_file                  = model.pre_trained_net_file;
 
@@ -135,12 +136,14 @@ model.stage1_rpn.nms.after_nms_topN           	= 2000;
 % model.stage1_rpn.nms.after_nms_topN           	= 200;
 
 %% stage 1 fast rcnn, inited from pre-trained network
-model.stage1_fast_rcnn.solver_def_file          = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF', 'solver_30k40k.prototxt');
+%model.stage1_fast_rcnn.solver_def_file          = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF', 'solver_30k40k.prototxt');
+model.stage1_fast_rcnn.solver_def_file          = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF', 'solver_40k100k.prototxt');
 model.stage1_fast_rcnn.test_net_def_file        = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF', 'test.prototxt');
 model.stage1_fast_rcnn.init_net_file            = model.pre_trained_net_file;
 
 %% stage 2 rpn, only finetune fc layers
-model.stage2_rpn.solver_def_file                = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF_fc6', 'solver_60k80k.prototxt');
+%model.stage2_rpn.solver_def_file                = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF_fc6', 'solver_60k80k.prototxt');
+model.stage2_rpn.solver_def_file                = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF_fc6', 'solver_100k160k.prototxt');
 model.stage2_rpn.test_net_def_file              = fullfile(pwd, 'models', 'rpn_prototxts', 'ZF_fc6', 'test.prototxt');
 
 % rpn test setting
@@ -150,7 +153,8 @@ model.stage2_rpn.nms.after_nms_topN           	= 2000;
 % model.stage2_rpn.nms.after_nms_topN           	= 200;
 
 %% stage 2 fast rcnn, only finetune fc layers
-model.stage2_fast_rcnn.solver_def_file          = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF_fc6', 'solver_30k40k.prototxt');
+%model.stage2_fast_rcnn.solver_def_file          = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF_fc6', 'solver_30k40k.prototxt');
+model.stage2_fast_rcnn.solver_def_file          = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF_fc6', 'solver_40k100k.prototxt');
 model.stage2_fast_rcnn.test_net_def_file        = fullfile(pwd, 'models', 'fast_rcnn_prototxts', 'ZF_fc6', 'test.prototxt');
 
 %% final test

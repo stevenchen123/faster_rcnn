@@ -33,5 +33,5 @@ for i = 1:num_images
     end
 end
 fprintf(sprintf('write %d images to val.txt\n', counter));
-
+fclose(fileID);
 end
